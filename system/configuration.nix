@@ -93,15 +93,15 @@
     ];
   };
 
+  fileSystems."/data" = {
+    device = "/dev/disk/by-uuid/8458a125-3b00-4baa-ac24-d45b68644929";
+    fsType = "ext4";
+  };
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
-  };
-
-  fileSystems."/home/jacob/Projects" = {
-    device = "/dev/disk/by-uuid/8458a125-3b00-4baa-ac24-d45b68644929";
-    fsType = "ext4";
   };
 
   security.rtkit.enable = true;
@@ -132,6 +132,37 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
+
+  systemd.timers."backup-drive" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5m";
+      OnUnitActiveSec = "120m";
+      Unit = "backup-drive.service";
+    };
+  };
+  systemd.services."backup-drive" = {
+    script = ''
+      sudo nice -n 19 rsync \
+        --archive \
+        --hard-links \
+        --acls \
+        --xattrs \
+        --sparse \
+        --delete-excluded \
+        --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/var/cache/*","/var/tmp/*"} \
+        --exclude '/data' \
+        --exclude '/home/*/.cache' \
+        --exclude '/home/*/.local/share/Trash' \
+        --exclude '/nix' \
+        / \
+        /data/backup
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
 
   documentation.dev.enable = true;
 

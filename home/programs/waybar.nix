@@ -54,7 +54,7 @@
         "disk#disk2" = {
           interval = 30;
           format = " {used}";
-          path = "/home/jacob/Projects";
+          path = "/data";
           tooltip = true;
           tooltip-format = "{used} / {total} => {percentage_used}%";
         };
