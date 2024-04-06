@@ -142,8 +142,9 @@
     };
   };
   systemd.services."backup-drive" = {
+    path = [ pkgs.rsync ];
     script = ''
-      sudo nice -n 19 rsync \
+      nice -n 19 rsync \
         --archive \
         --hard-links \
         --acls \
