@@ -51,6 +51,7 @@
       fd
       orca-slicer
       ollama
+      calibre
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       inputs.lexical.packages.${pkgs.system}.lexical
     ];

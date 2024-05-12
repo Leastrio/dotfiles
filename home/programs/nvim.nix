@@ -31,7 +31,6 @@
       dressing-nvim
       vim-elixir
 
-      inputs.self.packages.${pkgs.system}.pets-nvim
       inputs.self.packages.${pkgs.system}.nest-nvim
       inputs.self.packages.${pkgs.system}.icon-picker-nvim
       inputs.self.packages.${pkgs.system}.transparent-nvim
@@ -50,13 +49,6 @@
         local g = vim.g
         g.mapleader = " "
 
-        require("pets").setup({
-          row = 4,
-          popup = {
-            width = "100%",
-          }
-        })
-
         require("presence").setup()
         require("feline").setup()
         require("catppuccin").setup()
@@ -72,10 +64,6 @@
         vim.cmd.colorscheme "catppuccin"
 
         vim.cmd "syntax on"
-
-        vim.cmd "autocmd FileType rust nmap <leader>e <esc>:w<CR>:!cargo run<cr>"
-        vim.cmd "autocmd FileType elixir nmap <leader>e <esc>:w<CR>:!mix run --no-halt<cr>"
-        vim.cmd "autocmd FileType c nmap <leader>e <esc>:w<CR>:!gcc % && ./a.out<cr>"
 
         require("hop").setup()
         require("bufferline").setup()

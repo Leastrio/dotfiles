@@ -46,6 +46,9 @@
       windowrule = center,Rofi
       windowrule = stayfocused,Rofi
 
+      windowrule = center,Erlang
+      windowrule = float,Erlang
+
       general {
         gaps_out = 10
         no_cursor_warps = true
