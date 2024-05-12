@@ -130,7 +130,10 @@
               end
             }
           },
-          sources = cmp.config.sources { { name = "nvim_lsp" } }
+          sources = cmp.config.sources { 
+            { name = "nvim_lsp" },
+            { name = "luasnip" }
+          }
         }
 
         local lsp = require("lspconfig")
