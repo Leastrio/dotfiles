@@ -27,6 +27,7 @@
       luasnip
       rainbow-delimiters-nvim
       nvim-web-devicons
+      friendly-snippets
 
       # Required for icon-picker
       dressing-nvim
@@ -50,7 +51,11 @@
         vim.opt.termguicolors = true
         vim.wo.wrap = false
         vim.opt.completeopt = "menu,menuone,noselect"
+
         vim.g.mapleader = " "
+        vim.g.python_recommended_style = 0
+        vim.g.rust_recommended_style = 0
+        vim.g.elixir_recommended_style = 0
 
         vim.cmd "syntax on"
 
@@ -75,6 +80,7 @@
         require("icon-picker").setup({disable_legacy_commands = true})
 
         require("nest").applyKeymaps {
+          {"<c-c>", [["+y]], mode = "v"},
           {"<leader>", {
             {"hw", "<cmd>HopWord<cr>"},
             {"r", "<cmd>lua vim.lsp.buf.rename()<cr>"},
@@ -84,7 +90,7 @@
             {"n", "<cmd>IconPickerNormal<cr>"}
           }},
           {"J", "<cmd>lua vim.diagnostic.open_float()<cr>"},
-          {"K", "<cmd>lua vim.lsp.buf.hover<cr>"}
+          {"K", "<cmd>lua vim.lsp.buf.hover()<cr>"}
         }
 
         require("nvim-treesitter.configs").setup {
@@ -92,6 +98,8 @@
             enable = true
           }
         }
+
+        require("luasnip.loaders.from_vscode").lazy_load()
 
         local cmp = require("cmp")
         local luasnip = require("luasnip")
@@ -125,15 +133,7 @@
           sources = cmp.config.sources { { name = "nvim_lsp" } }
         }
 
-        local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
         local lsp = require("lspconfig")
-        local servers = { "clangd", "gopls", "rust_analyzer", "pyright" }
-        for _, server in ipairs(servers) do
-          lsp[server].setup {
-            on_attach = on_attach
-          }
-        end
-
         local configs = require("lspconfig.configs")
         if not configs.lexical then
           configs.lexical = {
@@ -145,6 +145,16 @@
               end,
               settings = {}
             }
+          }
+        end
+
+
+        local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+        local servers = { "clangd", "gopls", "rust_analyzer", "pyright", "lexical" }
+        for _, server in ipairs(servers) do
+          lsp[server].setup {
+            on_attach = on_attach,
+            capabilities = capabilities
           }
         end
     '';
