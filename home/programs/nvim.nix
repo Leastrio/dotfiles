@@ -25,6 +25,7 @@
       cmp-nvim-lsp
       lspkind-nvim
       luasnip
+      cmp_luasnip
       rainbow-delimiters-nvim
       nvim-web-devicons
       friendly-snippets
@@ -111,6 +112,9 @@
             end
           },
           mapping = {
+            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+            ["<C-e>"] = cmp.mapping.close(),
+            ["<CR>"] = cmp.mapping.confirm { select = true },
             ["<Tab>"] = function(fallback)
               if cmp.visible() then
                 cmp.select_next_item()
