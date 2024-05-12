@@ -160,7 +160,6 @@
         local servers = { "clangd", "gopls", "rust_analyzer", "pyright", "lexical" }
         for _, server in ipairs(servers) do
           lsp[server].setup {
-            on_attach = on_attach,
             capabilities = capabilities
           }
         end
