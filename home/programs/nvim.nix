@@ -12,7 +12,7 @@
 
     plugins = with pkgs.vimPlugins; [
       presence-nvim
-      feline-nvim
+      lualine-nvim
       catppuccin-nvim
       which-key-nvim
       hop-nvim
@@ -20,7 +20,7 @@
       telescope-nvim
       nvim-treesitter.withAllGrammars
       nvim-cmp
-      lexima-vim
+      nvim-autopairs
       nvim-lspconfig
       cmp-nvim-lsp
       lspkind-nvim
@@ -61,9 +61,48 @@
         vim.cmd "syntax on"
 
         require("presence").setup()
-        require("feline").setup()
+        require("nvim-autopairs").setup {}
 
-        require("catppuccin").setup()
+        require("lualine").setup {
+          options = {
+            theme = "catppuccin",
+            component_separators = "",
+            section_separators = { left = "", right = "" },
+          },
+          sections = {
+            lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+            lualine_b = { "filename", "branch", "diagnostics" },
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = { "filetype", "progress" },
+            lualine_z = { { "location", separator = { right = "" }, left_padding = 2 } },
+          },
+          inactive_sections = {
+            lualine_a = { "filename" },
+            lualine_b = {},
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = { "location" },
+          },
+          tabline = {},
+          extensions = {},
+        }
+
+        require("catppuccin").setup({
+          flavour = "mocha",
+          transparent_background = true,
+          integrations = {
+            cmp = true,
+            treesitter = true,
+            hop = true,
+            rainbow_delimiters = true,
+            telescope = {
+              enabled = true
+            },
+            which_key = true
+          }
+        })
         vim.cmd.colorscheme "catppuccin"
 
         require("which-key").setup()
@@ -88,7 +127,8 @@
             {"c", "<cmd>bdelete!<cr>"},
             {"f", "<cmd>Telescope find_files<cr>"},
             {"g", "<cmd>Telescope live_grep<cr>"},
-            {"n", "<cmd>IconPickerNormal<cr>"}
+            {"n", "<cmd>IconPickerNormal<cr>"},
+            {"qf", "<cmd>lua vim.lsp.buf.code_action()<cr>"}
           }},
           {"J", "<cmd>lua vim.diagnostic.open_float()<cr>"},
           {"K", "<cmd>lua vim.lsp.buf.hover()<cr>"}
@@ -146,7 +186,7 @@
           configs.lexical = {
             default_config = {
               filetypes = { "elixir", "eelixir", "heex" },
-              cmd = { "${inputs.lexical.packages.${pkgs.system}.lexical}/bin/lexical" },
+              cmd = { "${pkgs.lexical}/bin/lexical" },
               root_dir = function(fname)
                 return lsp.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
               end,
@@ -157,7 +197,7 @@
 
 
         local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-        local servers = { "clangd", "gopls", "rust_analyzer", "pyright", "lexical" }
+        local servers = { "clangd", "gopls", "rust_analyzer", "pyright", "lexical", "erlangls", "gleam" }
         for _, server in ipairs(servers) do
           lsp[server].setup {
             capabilities = capabilities

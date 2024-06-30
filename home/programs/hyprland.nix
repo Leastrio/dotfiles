@@ -12,9 +12,10 @@
       exec-once = wl-paste --type text --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
 
-      exec-once = [workspace 1 silent] firefox-devedition
-      exec-once = [workspace 2 silent] vencorddesktop
-      exec-once = [workspace 4 silent] spotify
+      exec-once = [workspace 1 silent] kitty
+      exec-once = [workspace 2 silent] firefox-devedition
+      exec-once = [workspace 4 silent] vesktop
+      exec-once = [workspace 3 silent] spotify
 
       bind = SUPER, Return, exec, kitty
       bind = SUPER, d, exec, rofi -show drun
@@ -51,7 +52,10 @@
 
       general {
         gaps_out = 10
-        no_cursor_warps = true
+      }
+
+      cursor {
+        no_warps = true
       }
 
       decoration {

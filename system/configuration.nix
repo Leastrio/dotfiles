@@ -1,5 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man pag# and in the NixOS manual (accessible by running `nixos-help`).
 {
   inputs,
   lib,
@@ -22,8 +20,8 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [8080];
@@ -174,6 +172,7 @@
       man-pages
       man-pages-posix
       vesktop
+      wireguard-tools
     ];
     sessionVariables.NIXOS_OZONE_WL = "1";
     variables = {

@@ -64,8 +64,8 @@
           escape = true;
           interval = 5;
           tooltip = false;
-          exec = "playerctl metadata --format '{{ artist }} - {{ title }}'";
-          on-click = "playerctl play-pause";
+          exec = "playerctl -p spotify metadata --format '{{ artist }} - {{ title }}'";
+          on-click = "playerctl -p spotify play-pause";
         };
       };
     };
@@ -102,7 +102,7 @@
       @define-color rosewater #f5e0dc;
 
       * {
-        font-family: "FiraCode Nerd Font";
+        font-family: "Jetbrains Mono Nerd Font";
         font-size: .9rem;
         border-radius: 1rem;
         transition-property: background-color;
@@ -110,13 +110,16 @@
         background-color: shade(@base, 0.9);
       }
 
+      /*
       @keyframes blink_red {
         to {
           background-color: @red;
           color: @base;
         }
       }
+      */
 
+      /*
       .warning, .critical, .urgent {
         animation-name: blink_red;
         animation-duration: 1s;
@@ -124,6 +127,7 @@
         animation-iteration-count: infinite;
         animation-direction: alternate;
       }
+      */
 
       #clock, #memory, #cpu, #disk, #custom-music {
         padding-left: .6rem;

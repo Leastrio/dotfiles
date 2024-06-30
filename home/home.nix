@@ -15,6 +15,7 @@
     ./programs/kitty.nix
     ./programs/rofi.nix
     ./programs/waybar.nix
+    ./programs/btop.nix
   ];
   home = {
     username = "jacob";
@@ -36,7 +37,6 @@
       wl-clipboard
       helvum
       lutris
-      btop
       obsidian-wayland
       swww
       insomnia
@@ -52,8 +52,12 @@
       orca-slicer
       ollama
       calibre
+      erlang-ls
+      qbittorrent
+      mpv
+      google-chrome
+      lexical
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
-      inputs.lexical.packages.${pkgs.system}.lexical
     ];
   };
   programs.home-manager.enable = true;

@@ -13,12 +13,6 @@
     };
 
     lanzaboote.url = "github:nix-community/lanzaboote";
-
-    lexical = {
-      type = "github";
-      owner = "lexical-lsp";
-      repo = "lexical";
-    };
   };
 
   outputs = {
