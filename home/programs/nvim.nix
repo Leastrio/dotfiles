@@ -123,7 +123,6 @@
           {"<c-c>", [["+y]], mode = "v"},
           {"<leader>", {
             {"hw", "<cmd>HopWord<cr>"},
-            {"r", "<cmd>lua vim.lsp.buf.rename()<cr>"},
             {"c", "<cmd>bdelete!<cr>"},
             {"f", "<cmd>Telescope find_files<cr>"},
             {"g", "<cmd>Telescope live_grep<cr>"},
