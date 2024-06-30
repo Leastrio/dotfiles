@@ -84,11 +84,11 @@
           {"<c-c>", [["+y]], mode = "v"},
           {"<leader>", {
             {"hw", "<cmd>HopWord<cr>"},
-            {"r", "<cmd>lua vim.lsp.buf.rename()<cr>"},
             {"c", "<cmd>bdelete!<cr>"},
             {"f", "<cmd>Telescope find_files<cr>"},
             {"g", "<cmd>Telescope live_grep<cr>"},
-            {"n", "<cmd>IconPickerNormal<cr>"}
+            {"n", "<cmd>IconPickerNormal<cr>"},
+            {"qf", "<cmd>lua vim.lsp.buf.code_action()<cr>"}
           }},
           {"J", "<cmd>lua vim.diagnostic.open_float()<cr>"},
           {"K", "<cmd>lua vim.lsp.buf.hover()<cr>"}
