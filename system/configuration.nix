@@ -80,16 +80,6 @@
   };
   security.polkit.enable = true;
 
-  hardware.opengl = {
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      amdvlk
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
-  };
-
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/8458a125-3b00-4baa-ac24-d45b68644929";
     fsType = "ext4";

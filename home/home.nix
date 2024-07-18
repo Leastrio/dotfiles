@@ -16,6 +16,7 @@
     ./programs/rofi.nix
     ./programs/waybar.nix
     ./programs/btop.nix
+    ./programs/ranger.nix
   ];
   home = {
     username = "jacob";
@@ -57,6 +58,7 @@
       mpv
       google-chrome
       lexical
+      prismlauncher
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     ];
   };
