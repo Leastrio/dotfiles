@@ -56,7 +56,11 @@
 
       cursor {
         no_warps = true
+        no_hardware_cursors = true
       }
+
+      env = HYPRCURSOR_THEME,Catppuccin-Mocha-Light-Cursors
+      env = HYPRCURSOR_SIZE,24
 
       decoration {
        rounding = 10

@@ -59,9 +59,25 @@
       google-chrome
       lexical
       prismlauncher
+      hyprcursor
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     ];
   };
+  home.file.".icons/Catppuccin-Mocha-Light-Cursors".source = ./Catppuccin-Mocha-Light-Cursors;
+  #home.pointerCursor = {
+  #  gtk.enable = true;
+  #  name = "Catppuccin-Mocha-Light-Cursors";
+  #  package = pkgs.catppuccin-cursors.mochaLight;
+  #  size = 16;
+  #};
+  #gtk = {
+  #  enable = true;
+  #  cursorTheme = {
+  #    name = "Catppuccin-Mocha-Light-Cursors";
+  #    package = pkgs.catppuccin-cursors.mochaLight;
+  #    size = 16;
+  #  };
+  #};
   programs.home-manager.enable = true;
   programs.direnv = {
     enable = true;

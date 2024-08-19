@@ -57,6 +57,8 @@
         vim.g.python_recommended_style = 0
         vim.g.rust_recommended_style = 0
         vim.g.elixir_recommended_style = 0
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
 
         vim.cmd "syntax on"
 
