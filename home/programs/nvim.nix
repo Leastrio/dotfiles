@@ -29,7 +29,6 @@
       rainbow-delimiters-nvim
       nvim-web-devicons
       friendly-snippets
-      telescope-file-browser-nvim
 
       # Required for icon-picker
       dressing-nvim
@@ -63,25 +62,6 @@
 
         require("presence").setup()
         require("nvim-autopairs").setup {}
-        
-        require("telescope").setup {
-          extensions = {
-            file_browser = {
-              hijack_netrw = true,
-              git_status = false,
-              grouped = true,
-              auto_depth = true,
-              hide_parent_dir = true,
-              display_stat = false,
-              mappings = {
-                ["i"] = {
-                  ["<bs>"] = false
-                }
-              }
-            }
-          }
-        }
-        require("telescope").load_extension "file_browser"
 
         require("lualine").setup {
           options = {
