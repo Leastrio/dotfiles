@@ -29,6 +29,7 @@
       rainbow-delimiters-nvim
       nvim-web-devicons
       friendly-snippets
+      telescope-file-browser-nvim
 
       # Required for icon-picker
       dressing-nvim
@@ -57,13 +58,30 @@
         vim.g.python_recommended_style = 0
         vim.g.rust_recommended_style = 0
         vim.g.elixir_recommended_style = 0
-        vim.g.loaded_netrw = 1
-        vim.g.loaded_netrwPlugin = 1
 
         vim.cmd "syntax on"
 
         require("presence").setup()
         require("nvim-autopairs").setup {}
+        
+        require("telescope").setup {
+          extensions = {
+            file_browser = {
+              hijack_netrw = true,
+              git_status = false,
+              grouped = true,
+              auto_depth = true,
+              hide_parent_dir = true,
+              display_stat = false,
+              mappings = {
+                ["i"] = {
+                  ["<bs>"] = false
+                }
+              }
+            }
+          }
+        }
+        require("telescope").load_extension "file_browser"
 
         require("lualine").setup {
           options = {
@@ -126,8 +144,9 @@
           {"<leader>", {
             {"hw", "<cmd>HopWord<cr>"},
             {"c", "<cmd>bdelete!<cr>"},
-            {"f", "<cmd>Telescope find_files<cr>"},
-            {"g", "<cmd>Telescope live_grep<cr>"},
+            {"fb", "<cmd>Telescope file_browser<cr>"},
+            {"ff", "<cmd>Telescope find_files<cr>"},
+            {"fg", "<cmd>Telescope live_grep<cr>"},
             {"n", "<cmd>IconPickerNormal<cr>"},
             {"qf", "<cmd>lua vim.lsp.buf.code_action()<cr>"}
           }},
