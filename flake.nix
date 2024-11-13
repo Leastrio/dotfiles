@@ -6,7 +6,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +17,6 @@
   outputs = {
     nixpkgs,
     home-manager,
-    hyprland,
     lanzaboote,
     ...
   } @ inputs: let
@@ -53,7 +51,6 @@
               };
             };
           }
-          hyprland.nixosModules.default
           ./system/configuration.nix
           home-manager.nixosModules.home-manager
           {

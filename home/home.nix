@@ -5,7 +5,6 @@
   ...
 }: {
   imports = [
-    inputs.hyprland.homeManagerModules.default
     ./programs/nvim.nix
     ./programs/hyprland.nix
     ./programs/obs.nix
@@ -26,7 +25,7 @@
       SYS_NIX = "$HOME/.config/nixos/system/configuration.nix";
     };
     packages = with pkgs; [
-      firefox-devedition
+      firefox-devedition-bin
       spotify
       bitwarden
       pcmanfm
@@ -50,7 +49,6 @@
       gimp
       arduino
       fd
-      orca-slicer
       ollama
       calibre
       erlang-ls
@@ -58,8 +56,10 @@
       mpv
       google-chrome
       lexical
+      tailwindcss-language-server
       prismlauncher
       hyprcursor
+      ffmpeg-full
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     ];
   };

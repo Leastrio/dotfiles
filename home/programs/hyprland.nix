@@ -4,8 +4,8 @@
     xwayland.enable = true;
 
     extraConfig = ''
-      monitor = DP-3,2560x1440@170,0x520,1,bitdepth,10
-      monitor = HDMI-A-1,2560x1440@59,2560x0,1,transform,3,bitdepth,10
+      monitor = DP-3,2560x1440@170,0x520,1,bitdepth,8
+      monitor = HDMI-A-1,2560x1440@59,2560x0,1,transform,3,bitdepth,8
 
       exec-once = waybar
       exec-once = swww init && swww img $HOME/Wallpapers/tropic_island_night.jpg
@@ -13,7 +13,7 @@
       exec-once = wl-paste --type image --watch cliphist store
 
       exec-once = [workspace 1 silent] kitty
-      exec-once = [workspace 2 silent] firefox-devedition
+      exec-once = [workspace 2 silent] firefox-developer-edition
       exec-once = [workspace 4 silent] vesktop
       exec-once = [workspace 3 silent] spotify
 

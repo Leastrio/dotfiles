@@ -124,9 +124,8 @@
           {"<leader>", {
             {"hw", "<cmd>HopWord<cr>"},
             {"c", "<cmd>bdelete!<cr>"},
-            {"fb", "<cmd>Telescope file_browser<cr>"},
-            {"ff", "<cmd>Telescope find_files<cr>"},
-            {"fg", "<cmd>Telescope live_grep<cr>"},
+            {"f", "<cmd>Telescope find_files<cr>"},
+            {"g", "<cmd>Telescope live_grep<cr>"},
             {"n", "<cmd>IconPickerNormal<cr>"},
             {"qf", "<cmd>lua vim.lsp.buf.code_action()<cr>"}
           }},
@@ -197,7 +196,7 @@
 
 
         local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-        local servers = { "clangd", "gopls", "rust_analyzer", "pyright", "lexical", "erlangls", "gleam" }
+        local servers = { "clangd", "gopls", "rust_analyzer", "pyright", "lexical", "erlangls", "gleam", "tailwindcss" }
         for _, server in ipairs(servers) do
           lsp[server].setup {
             capabilities = capabilities
